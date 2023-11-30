@@ -1,0 +1,59 @@
+//.text:00401000     push  ebp  |
+//.text:00401001     mov   ebp, esp
+//.text:00401003    push ecx
+//.text:00401004    push 0       ; dwReserved
+//.text:00401006    push 0       ; lpdwFlags
+//.text:00401008    call  ds:InternetGetConnectedState
+//.text:0040100E    mov  [ebp+var_4], eax
+//.text:00401011      cmp [ebp+var_4], 0
+//.text:00401015     jz short loc_40102B
+//.text:00401017     push offset SucessInternet ; "Sucess: Internet Connection\n"
+//.text:0040101C    call sub_40105F
+//.text:00401021     add esp, 4
+//.text:00401024    mov eax, 1
+//.text:00401029    jmp short loc_40103A
+//.text:0040102B ; ------------------------------------------------------------------------
+//.text:0040102B
+
+
+
+
+//.text:00401000     push  ebp         ; Prologue: Save old base pointer
+//.text:00401001     mov   ebp, esp    ; Prologue: Set up new base pointer
+//.text:00401003     push ecx          ; Save ECX register
+
+//.text:00401004     push 0            ; dwReserved
+//.text:00401006     push 0            ; lpdwFlags
+//.text:00401008     call  ds:InternetGetConnectedState ; Call to InternetGetConnectedState
+//.text:0040100E     mov  [ebp+var_4], eax          ; Move the result to [ebp+var_4]
+//.text:00401011     cmp [ebp+var_4], 0             ; Compare [ebp+var_4] with 0
+
+//.text:00401015     jz short loc_40102B           ; Jump if zero (branch if no internet connection)
+//.text:00401017     push offset SucessInterne    ; Push address of "Sucess: Internet Connection\n" string
+//.text:0040101C     call sub_40105F               ; Call a subroutine at address sub_40105F
+//.text:00401021     add esp, 4                   ; Adjust the stack pointer after the call
+//.text:00401024     mov eax, 1                   ; Move 1 to eax register
+//.text:00401029     jmp short loc_40103A         ; Jump to loc_40103A
+
+//.text:0040102B ; ------------------------------------------------------------------------
+//.text:0040102B                                   ; (This is likely the start of another block or function)
+
+
+Sulla base del frammento di codice assembly fornito, non è possibile determinare in modo definitivo l'intera funzionalità o tutte le funzioni implementate. Tuttavia, posso identificare alcune operazioni e interazioni chiave:
+
+-Chiamata di funzione InternetGetConnectedState:
+
+Il codice utilizza la funzione InternetGetConnectedState, che viene chiamata con i parametri 0 e 0 (dwReserved e lpdwFlags). Questa    funzione viene utilizzata per verificare se il sistema è connesso a Internet.
+
+Chiamata di subroutine (sub_40105F):
+
+All'indirizzo sub_40105F è presente una chiamata a una subroutine dopo l'esito positivo della verifica della connessione a Internet. Lo scopo di questa subroutine non è fornito nel frammento di codice fornito.
+
+-Stringa in uscita (SuccessInternet):
+
+Dopo la chiamata alla subroutine, viene inserita nello stack la stringa SucessInterne (forse un errore di battitura, corretto in SuccessInternet). Questa stringa viene probabilmente stampata o utilizzata per qualche output.
+
+-Salto condizionato: 
+
+Esistono salti condizionati (jz e jmp) basati sul risultato del confronto (cmp). Questi controllano il flusso del programma, portando ad azioni diverse a seconda che la verifica della connessione a Internet abbia avuto successo o meno.
+Senza il contesto completo del programma, è difficile fornire un elenco completo delle funzioni implementate. Il codice fornito sembra far parte di un programma più ampio che verifica la presenza di una connessione a Internet ed esegue azioni in base al risultato.
